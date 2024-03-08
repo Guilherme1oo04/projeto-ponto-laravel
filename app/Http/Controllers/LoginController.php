@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    public function index() {
+    public function login() {
         if (Auth::check()) {
             return redirect()->back();
         }
@@ -25,10 +25,20 @@ class LoginController extends Controller
         if(Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->route('index');
+            if(Auth::user()->super_admin) {
+                return redirect()->route('admin.home');
+            }
+
+            return redirect()->route('home');
         }
 
-        return redirect()->route('login')->with('message', 'Falha no Login');
+        return redirect()->route('auth.login')->with('message', 'Falha no Login');
 
+    }
+
+    public function logout() {
+        Auth::logout();
+
+        return redirect()->route('auth.login');
     }
 }
