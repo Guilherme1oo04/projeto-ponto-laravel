@@ -1,4 +1,4 @@
-<form action="/authenticate" method="post">
+<form action="{{route('auth.authenticate')}}" method="post">
     @csrf
 
     <label for="email">Email</label>
