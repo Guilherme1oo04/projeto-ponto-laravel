@@ -1,7 +1,8 @@
 <?php
 
 use App\Http\Controllers\LoginController;
-use App\Http\Controllers\PontoController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\SuperAdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,17 +18,34 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function() {
-    return redirect()->route('login');
+    return redirect()->route('auth.login');
 });
-Route::get('/login', [LoginController::class, 'index'])->name('login');
-Route::post('authenticate', [LoginController::class, 'authenticate'])->name('authenticate');
+
+Route::group(['prefix' => 'auth', 'as' => 'auth.'], function() {
+
+    Route::get('/login', [LoginController::class, 'login'])->name('login');
+    Route::post('/authenticate', [LoginController::class, 'authenticate'])->name('authenticate');
+
+});
 
 Route::group(['middleware' => 'auth'], function() {
 
-    Route::get('/index', [PontoController::class, 'index'])->name('index');
+    Route::group(['middleware' => 'common.user'], function() {
+        
+        Route::get('/home', [UserController::class, 'home'])->name('home');
+
+    });
+
+    Route::group(['middleware' => 'super.admin', 'prefix' => 'admin', 'as' => 'admin.'], function() {
+
+        Route::get('/home', [SuperAdminController::class, 'home'])->name('home');
+
+    });
+
+    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 });
 
 Route::fallback(function() {
-    return redirect()->back();
+    abort(404);
 });
