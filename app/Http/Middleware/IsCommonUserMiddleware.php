@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
-class SuperAdminMiddleware
+class IsCommonUserMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,10 +16,10 @@ class SuperAdminMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(!Auth::user()->super_admin) {
+        if(Auth::user()->super_admin) {
             return redirect()->back();
         }
-        
+
         return $next($request);
     }
 }
