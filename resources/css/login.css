@@ -1,0 +1,27 @@
+.screen {
+    @apply tw-w-screen tw-h-screen tw-flex tw-flex-col tw-justify-center tw-items-center tw-bg-slate-100;
+}
+
+.title {
+    @apply tw-font-bold tw-text-2xl tw-fixed tw-top-0 tw-p-2 tw-border-zinc-800;
+}
+
+.inputs {
+    @apply tw-relative tw-mb-5;
+}
+
+.input {
+    @apply tw-relative tw-bg-transparent tw-border-blue-700 tw-border-solid tw-border-2 tw-rounded-md tw-h-10 tw-text-base tw-p-2;
+}
+
+.input-label {
+    @apply tw-absolute tw-left-0 tw-top-0 tw-ml-2 tw-mt-0.5 tw-text-lg tw-p-0.5 tw-rounded-sm tw-duration-500;
+}
+
+.input:focus, .input:not(:placeholder-shown) {
+    @apply tw-border-zinc-800;
+}
+
+.input:focus ~ .input-label, .input:not(:placeholder-shown) ~ .input-label {
+    @apply tw-text-sm tw-mt-[-18px] tw-ml-[8px] tw-bg-blue-700 tw-text-slate-100;
+}
