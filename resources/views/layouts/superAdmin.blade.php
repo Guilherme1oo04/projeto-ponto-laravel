@@ -7,35 +7,59 @@
     <title>@yield('title')</title>
     @vite('resources/css/app.css')
 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <style>
+        .material-symbols-outlined {
+          font-variation-settings:
+          'FILL' 0,
+          'wght' 400,
+          'GRAD' 0,
+          'opsz' 24
+        }
+        </style>
+
 
 </head>
 <body class="tw-bg-white">
     
-    <header class="tw-flex tw-justify-between tw-py-6 tw-px-5 tw-items-center tw-border-b tw-border-solid tw-border-slate-200 tw-shadow-sm">
+    <header class="tw-flex tw-justify-between tw-py-6 tw-px-5 tw-items-center tw-border-b tw-border-solid tw-border-slate-300 tw-shadow-sm">
         <a class="tw-text-2xl tw-font-semibold tw-text-slate-900 tw-flex" href="{{route('admin.home')}}">
             <img src="../../assets/icon-clock.svg" class="tw-w-10 tw-mr-2">
             Clock In Help
         </a>
 
-        <nav class="tw-hidden sm:tw-flex tw-gap-6">
-            <a href="{{route('admin.home')}}" class="tw-duration-200 tw-ease-in tw-text-md tw-text-slate-800 tw-font-semibold tw-rounded-sm tw-px-2 tw-py-1 hover:tw-bg-slate-700 hover:tw-text-slate-100">
+        <nav class="tw-hidden md:tw-flex tw-gap-6">
+            <a href="{{route('admin.home')}}" class="tw-duration-200 tw-ease-in tw-text-md tw-text-slate-800 tw-font-semibold tw-rounded-md tw-px-2 tw-py-2 hover:tw-bg-slate-700 hover:tw-text-slate-100 tw-flex tw-items-center">
+                <span class="material-symbols-outlined tw-mr-1">
+                    home
+                </span>
                 Home
             </a>
 
-            <a href="#" class="tw-duration-200 tw-ease-in tw-text-md tw-text-slate-800 tw-font-semibold tw-rounded-sm tw-px-2 tw-py-1 hover:tw-bg-slate-700 hover:tw-text-slate-100">
+            <a href="#" class="tw-duration-200 tw-ease-in tw-text-md tw-text-slate-800 tw-font-semibold tw-rounded-md tw-px-2 tw-py-2 hover:tw-bg-slate-700 hover:tw-text-slate-100 tw-flex tw-items-center">
+                <span class="material-symbols-outlined tw-mr-1">
+                    group
+                </span>
                 Funcionários
             </a>
 
-            <a href="#" class="tw-duration-200 tw-ease-in tw-text-md tw-text-slate-800 tw-font-semibold tw-rounded-sm tw-px-2 tw-py-1 hover:tw-bg-slate-700 hover:tw-text-slate-100">
+            <a href="#" class="tw-duration-200 tw-ease-in tw-text-md tw-text-slate-800 tw-font-semibold tw-rounded-md tw-px-2 tw-py-2 hover:tw-bg-slate-700 hover:tw-text-slate-100 tw-flex tw-items-center">
+                <span class="material-symbols-outlined tw-mr-1">
+                    lab_profile
+                </span>
                 Relatórios
             </a>
 
-            <a href="{{route('logout')}}" class="tw-text-md tw-text-slate-100 tw-bg-slate-700 tw-font-semibold tw-rounded-2xl tw-px-3 tw-py-1 hover:tw-bg-slate-900 hover:tw-text-slate-50">
+            <a href="{{route('logout')}}" class="tw-text-md tw-text-slate-100 tw-bg-slate-700 tw-font-semibold tw-rounded-3xl tw-px-3 tw-py-2 hover:tw-bg-slate-900 hover:tw-text-slate-50 tw-flex tw-items-center">
+                <span class="material-symbols-outlined tw-mr-1">
+                    logout
+                </span>
                 Logout
             </a>
         </nav>
 
-        <nav class="sm:tw-hidden">
+        <nav class="md:tw-hidden">
 
             <button onclick="abrirMenu()" class="">
                 <span id="barra-1" class="tw-w-[30px] tw-h-1 tw-bg-slate-900 tw-block tw-rounded tw-duration-200 tw-ease-in-out tw-mt-0"></span>
@@ -44,19 +68,31 @@
             </button>
 
             <div id="menu-mobile" class="tw-hidden tw-flex-col tw-absolute tw-bg-white tw-rounded-md tw-right-4 tw-translate-y-12 tw-items-end tw-shadow-md tw-justify-around tw-w-36">
-                <a href="{{route('admin.home')}}" class="tw-duration-200 tw-ease-in tw-text-md tw-text-slate-800 tw-font-semibold tw-rounded-sm tw-px-2 tw-py-4 tw-w-full hover:tw-bg-slate-700 hover:tw-text-slate-100">
+                <a href="{{route('admin.home')}}" class="tw-duration-200 tw-ease-in tw-text-md tw-text-slate-800 tw-font-semibold tw-rounded-sm tw-px-2 tw-py-4 tw-w-full hover:tw-bg-slate-700 hover:tw-text-slate-100 tw-flex tw-items-center">
+                    <span class="material-symbols-outlined tw-mr-2">
+                        home
+                    </span>
                     Home
                 </a>
     
-                <a href="#" class="tw-duration-200 tw-ease-in tw-text-md tw-text-slate-800 tw-font-semibold tw-rounded-sm tw-px-2 tw-py-4 tw-w-full hover:tw-bg-slate-700 hover:tw-text-slate-100">
+                <a href="#" class="tw-duration-200 tw-ease-in tw-text-md tw-text-slate-800 tw-font-semibold tw-rounded-sm tw-px-2 tw-py-4 tw-w-full hover:tw-bg-slate-700 hover:tw-text-slate-100 tw-flex tw-items-center">
+                    <span class="material-symbols-outlined tw-mr-2">
+                        group
+                    </span>
                     Funcionários
                 </a>
     
-                <a href="#" class="tw-duration-200 tw-ease-in tw-text-md tw-text-slate-800 tw-font-semibold tw-rounded-sm tw-px-2 tw-py-4 tw-w-full hover:tw-bg-slate-700 hover:tw-text-slate-100">
+                <a href="#" class="tw-duration-200 tw-ease-in tw-text-md tw-text-slate-800 tw-font-semibold tw-rounded-sm tw-px-2 tw-py-4 tw-w-full hover:tw-bg-slate-700 hover:tw-text-slate-100 tw-flex tw-items-center">
+                    <span class="material-symbols-outlined tw-mr-2">
+                        lab_profile
+                    </span>
                     Relatórios
                 </a>
     
-                <a href="{{route('logout')}}" class="tw-duration-200 tw-ease-in tw-text-md tw-text-slate-800 tw-font-semibold tw-rounded-sm tw-px-2 tw-py-4 tw-w-full hover:tw-bg-slate-700 hover:tw-text-slate-100">
+                <a href="{{route('logout')}}" class="tw-duration-200 tw-ease-in tw-text-md tw-text-slate-800 tw-font-semibold tw-rounded-sm tw-px-2 tw-py-4 tw-w-full hover:tw-bg-slate-700 hover:tw-text-slate-100 tw-flex tw-items-center">
+                    <span class="material-symbols-outlined tw-mr-2">
+                        logout
+                    </span>
                     Logout
                 </a>
             </div>
