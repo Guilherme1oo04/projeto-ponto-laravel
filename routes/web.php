@@ -40,6 +40,13 @@ Route::group(['middleware' => 'auth'], function() {
 
         Route::get('/home', [SuperAdminController::class, 'home'])->name('home');
 
+        Route::group(['prefix' => 'employees', 'as' => 'employees.'], function() {
+
+            Route::get('/add', [SuperAdminController::class, 'addEmployee'])->name('add');
+            Route::post('/processAdition', [SuperAdminController::class, 'processAditionEmployee'])->name('processAdition');
+
+        });
+
     });
 
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
