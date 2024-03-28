@@ -26,6 +26,7 @@ class UserFactory extends Factory
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
+            'cpf' => strval(fake()->randomNumber(9)) . strval(fake()->randomNumber(2)),
             'email_verified_at' => now(),
             'timeline' => 'default',
             'password' => static::$password ??= Hash::make('password'),
