@@ -23,13 +23,13 @@
 </head>
 <body class="tw-bg-gray-100">
     
-    <header class="tw-flex tw-justify-between tw-py-6 tw-px-5 tw-items-center tw-border-b tw-border-solid tw-border-gray-300 tw-bg-white tw-shadow-sm">
+    <header class="tw-flex tw-justify-between tw-py-6 tw-px-3 tw-items-center tw-border-b tw-border-solid tw-border-gray-300 tw-bg-white tw-shadow-sm">
         <a class="tw-text-2xl tw-font-semibold tw-text-gray-800 tw-flex" href="{{route('admin.home')}}">
             <img src="../../assets/icon-clock.svg" class="tw-w-10 tw-mr-2">
             Clock In Help
         </a>
 
-        <nav class="tw-hidden md:tw-flex tw-gap-6">
+        <nav class="tw-hidden md:tw-flex tw-gap-2 lg:tw-gap-4">
             <a href="{{route('admin.home')}}" class="tw-duration-200 tw-ease-in tw-text-md tw-text-gray-800 tw-font-semibold tw-rounded-md tw-px-2 tw-py-2 hover:tw-bg-blue-700 hover:tw-text-white tw-flex tw-items-center">
                 <span class="material-symbols-outlined tw-mr-1">
                     home
@@ -42,6 +42,13 @@
                     group
                 </span>
                 Funcionários
+            </a>
+
+            <a href="#" class="tw-duration-200 tw-ease-in tw-text-md tw-text-gray-800 tw-font-semibold tw-rounded-md tw-px-2 tw-py-2 hover:tw-bg-blue-700 hover:tw-text-white tw-flex tw-items-center">
+                <span class="material-symbols-outlined tw-mr-1">
+                    date_range
+                </span>
+                Timelines
             </a>
 
             <a href="#" class="tw-duration-200 tw-ease-in tw-text-md tw-text-gray-800 tw-font-semibold tw-rounded-md tw-px-2 tw-py-2 hover:tw-bg-blue-700 hover:tw-text-white tw-flex tw-items-center">
@@ -80,6 +87,13 @@
                         group
                     </span>
                     Funcionários
+                </a>
+
+                <a href="#" class="tw-duration-200 tw-ease-in tw-text-md tw-text-gray-800 tw-font-semibold tw-rounded-sm tw-px-2 tw-py-4 tw-w-full hover:tw-bg-blue-700 hover:tw-text-white tw-flex tw-items-center">
+                    <span class="material-symbols-outlined tw-mr-2">
+                        date_range
+                    </span>
+                    Timelines
                 </a>
     
                 <a href="#" class="tw-duration-200 tw-ease-in tw-text-md tw-text-gray-800 tw-font-semibold tw-rounded-sm tw-px-2 tw-py-4 tw-w-full hover:tw-bg-blue-700 hover:tw-text-white tw-flex tw-items-center">
