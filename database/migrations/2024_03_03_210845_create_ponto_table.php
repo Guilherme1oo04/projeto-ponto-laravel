@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('ponto', function (Blueprint $table) {
             $table->id();
-            $table->foreignId(User::class);
+            $table->foreignId('id_usuario');
             $table->boolean('entrada_saida');
             $table->timestamp('horario')->default(DB::raw('CURRENT_TIMESTAMP'));
         });
