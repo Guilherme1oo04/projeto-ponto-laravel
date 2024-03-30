@@ -11,11 +11,4 @@ class SuperAdminController extends Controller
         return view('superAdmin.home');
     }
 
-    public function addEmployee() {
-        return view('superAdmin.addEmployee');
-    }
-
-    public function processAditionEmployee(Request $request) {
-
-    }
 }
