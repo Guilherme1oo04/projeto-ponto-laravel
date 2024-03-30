@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SuperAdminController;
+use App\Http\Controllers\TimelineController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,8 +44,14 @@ Route::group(['middleware' => 'auth'], function() {
 
         Route::group(['prefix' => 'employees', 'as' => 'employees.'], function() {
 
-            Route::get('/add', [SuperAdminController::class, 'addEmployee'])->name('add');
-            Route::post('/processAdition', [SuperAdminController::class, 'processAditionEmployee'])->name('processAdition');
+            Route::get('/add', [EmployeeController::class, 'addEmployee'])->name('add');
+            Route::post('/processAdition', [EmployeeController::class, 'processAditionEmployee'])->name('processAdition');
+
+        });
+
+        Route::group(['prefix' => 'timelines', 'as' => 'timelines.'], function() {
+
+            Route::get('/', [TimelineController::class, 'index'])->name('index');
 
         });
 
