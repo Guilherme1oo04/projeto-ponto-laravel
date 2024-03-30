@@ -44,7 +44,7 @@
                 Funcionários
             </a>
 
-            <a href="#" class="tw-duration-200 tw-ease-in tw-text-md tw-text-gray-800 tw-font-semibold tw-rounded-md tw-px-2 tw-py-2 hover:tw-bg-blue-700 hover:tw-text-white tw-flex tw-items-center">
+            <a href="{{route('admin.timelines.index')}}" class="tw-duration-200 tw-ease-in tw-text-md tw-text-gray-800 tw-font-semibold tw-rounded-md tw-px-2 tw-py-2 hover:tw-bg-blue-700 hover:tw-text-white tw-flex tw-items-center">
                 <span class="material-symbols-outlined tw-mr-1">
                     date_range
                 </span>
@@ -58,7 +58,7 @@
                 Relatórios
             </a>
 
-            <a href="{{route('logout')}}" class="tw-text-md tw-text-white tw-bg-blue-700 tw-font-semibold tw-rounded-3xl tw-px-3 tw-py-2 hover:tw-bg-blue-900 tw-flex tw-items-center">
+            <a href="{{route('logout')}}" class="tw-text-md tw-text-white tw-bg-blue-700 tw-font-semibold tw-rounded-3xl tw-px-3 tw-py-2 hover:tw-bg-blue-800 tw-flex tw-items-center">
                 <span class="material-symbols-outlined tw-mr-1">
                     logout
                 </span>
@@ -89,7 +89,7 @@
                     Funcionários
                 </a>
 
-                <a href="#" class="tw-duration-200 tw-ease-in tw-text-md tw-text-gray-800 tw-font-semibold tw-rounded-sm tw-px-2 tw-py-4 tw-w-full hover:tw-bg-blue-700 hover:tw-text-white tw-flex tw-items-center">
+                <a href="{{route('admin.timelines.index')}}" class="tw-duration-200 tw-ease-in tw-text-md tw-text-gray-800 tw-font-semibold tw-rounded-sm tw-px-2 tw-py-4 tw-w-full hover:tw-bg-blue-700 hover:tw-text-white tw-flex tw-items-center">
                     <span class="material-symbols-outlined tw-mr-2">
                         date_range
                     </span>
