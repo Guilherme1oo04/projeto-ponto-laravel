@@ -22,17 +22,17 @@
 
                 <div class="tw-flex tw-flex-col tw-px-7 tw-mb-4">
                     <label for="name" class="tw-text-gray-900 tw-mb-1">Name</label>
-                    <input type="text" name="name" id="name" class="tw-border tw-rounded-md tw-px-3 tw-py-2 tw-text-gray-900 tw-outline-none focus:tw-border-2 focus:tw-border-blue-500">
+                    <input type="text" name="name" id="name" class="tw-border tw-rounded-md tw-px-3 tw-py-2 tw-text-gray-900 tw-outline-none focus:tw-border-2 focus:tw-border-blue-700">
                 </div>
 
                 <div class="tw-flex tw-flex-col tw-px-7 tw-mb-4">
                     <label for="email" class="tw-text-gray-900 tw-mb-1">Email</label>
-                    <input type="email" name="email" id="email" class="tw-border tw-rounded-md tw-px-3 tw-py-2 tw-text-gray-900 tw-outline-none focus:tw-border-2 focus:tw-border-blue-500">
+                    <input type="email" name="email" id="email" class="tw-border tw-rounded-md tw-px-3 tw-py-2 tw-text-gray-900 tw-outline-none focus:tw-border-2 focus:tw-border-blue-700">
                 </div>
 
                 <div class="tw-flex tw-flex-col tw-px-7 tw-mb-4">
                     <label for="cpf" class="tw-text-gray-900 tw-mb-1">CPF</label>
-                    <input type="text" maxlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" name="cpf" id="cpf" class="tw-border tw-rounded-md tw-px-3 tw-py-2 tw-text-gray-900 tw-outline-none focus:tw-border-2 focus:tw-border-blue-500">
+                    <input type="text" maxlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" name="cpf" id="cpf" class="tw-border tw-rounded-md tw-px-3 tw-py-2 tw-text-gray-900 tw-outline-none focus:tw-border-2 focus:tw-border-blue-700">
                 </div>
 
             </form>

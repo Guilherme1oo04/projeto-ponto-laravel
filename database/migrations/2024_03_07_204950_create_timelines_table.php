@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->string('description');
-            $table->string('non_work_days');
+            $table->string('standard_non_work_days');
             $table->timestamps();
         });
     }
