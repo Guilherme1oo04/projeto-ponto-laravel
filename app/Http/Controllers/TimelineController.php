@@ -11,4 +11,12 @@ class TimelineController extends Controller
 
         return view('superAdmin.timelines');
     }
+
+    public function addTimeline() {
+        return view('superAdmin.addTimeline');
+    }
+
+    public function processAditionTimeline() {
+        
+    }
 }
