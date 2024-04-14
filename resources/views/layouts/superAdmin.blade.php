@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title')</title>
     @vite('resources/css/app.css')
+    @vite('resources/js/app.js')
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
@@ -66,44 +67,45 @@
             </a>
         </nav>
 
-        <nav class="md:tw-hidden">
+        <nav class="md:tw-hidden" x-data="{open: false}" @click.away="open=false">
 
-            <button onclick="abrirMenu()" class="">
-                <span id="barra-1" class="tw-w-[30px] tw-h-1 tw-bg-gray-800 tw-block tw-rounded tw-duration-200 tw-ease-in-out tw-mt-0"></span>
-                <span id="barra-2" class="tw-w-[30px] tw-h-1 tw-bg-gray-800 tw-block tw-rounded tw-mt-1"></span>
-                <span id="barra-3" class="tw-w-[30px] tw-h-1 tw-bg-gray-800 tw-block tw-rounded tw-duration-200 tw-ease-in-out tw-mt-1 "></span>
+            <button @click="open = !open">
+                <svg x-show="!open" class="tw-w-9 tw-h-9 tw-mr-2" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" stroke="currentColor">
+                    <path d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+                <svg x-show="open" class="tw-w-9 tw-h-9 tw-mr-2" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" viewBox="0 0 24 24" stroke="currentColor"><path d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
 
-            <div id="menu-mobile" class="tw-hidden tw-flex-col tw-absolute tw-bg-white tw-rounded-md tw-right-4 tw-translate-y-12 tw-items-end tw-shadow-md tw-justify-around tw-w-36">
-                <a href="{{route('admin.home')}}" class="tw-duration-200 tw-ease-in tw-text-md tw-text-gray-800 tw-font-semibold tw-rounded-sm tw-px-2 tw-py-4 tw-w-full hover:tw-bg-blue-700 hover:tw-text-white tw-flex tw-items-center">
+            <div x-show="open" id="menu-mobile" style="display: none" class="tw-flex tw-flex-col tw-absolute tw-bg-white tw-rounded-md tw-right-4 tw-translate-y-12 tw-items-end tw-shadow-md tw-justify-around tw-w-36">
+                <a href="{{route('admin.home')}}" class="tw-duration-200 tw-ease-in tw-text-md tw-text-gray-800 tw-font-semibold tw-rounded-t-md tw-px-2 tw-py-4 tw-w-full hover:tw-bg-blue-700 hover:tw-text-white tw-flex tw-items-center">
                     <span class="material-symbols-outlined tw-mr-2">
                         home
                     </span>
                     Início
                 </a>
     
-                <a href="#" class="tw-duration-200 tw-ease-in tw-text-md tw-text-gray-800 tw-font-semibold tw-rounded-sm tw-px-2 tw-py-4 tw-w-full hover:tw-bg-blue-700 hover:tw-text-white tw-flex tw-items-center">
+                <a href="#" class="tw-duration-200 tw-ease-in tw-text-md tw-text-gray-800 tw-font-semibold tw-px-2 tw-py-4 tw-w-full hover:tw-bg-blue-700 hover:tw-text-white tw-flex tw-items-center">
                     <span class="material-symbols-outlined tw-mr-2">
                         group
                     </span>
                     Funcionários
                 </a>
 
-                <a href="{{route('admin.timelines.index')}}" class="tw-duration-200 tw-ease-in tw-text-md tw-text-gray-800 tw-font-semibold tw-rounded-sm tw-px-2 tw-py-4 tw-w-full hover:tw-bg-blue-700 hover:tw-text-white tw-flex tw-items-center">
+                <a href="{{route('admin.timelines.index')}}" class="tw-duration-200 tw-ease-in tw-text-md tw-text-gray-800 tw-font-semibold tw-px-2 tw-py-4 tw-w-full hover:tw-bg-blue-700 hover:tw-text-white tw-flex tw-items-center">
                     <span class="material-symbols-outlined tw-mr-2">
                         date_range
                     </span>
                     Timelines
                 </a>
     
-                <a href="#" class="tw-duration-200 tw-ease-in tw-text-md tw-text-gray-800 tw-font-semibold tw-rounded-sm tw-px-2 tw-py-4 tw-w-full hover:tw-bg-blue-700 hover:tw-text-white tw-flex tw-items-center">
+                <a href="#" class="tw-duration-200 tw-ease-in tw-text-md tw-text-gray-800 tw-font-semibold tw-px-2 tw-py-4 tw-w-full hover:tw-bg-blue-700 hover:tw-text-white tw-flex tw-items-center">
                     <span class="material-symbols-outlined tw-mr-2">
                         lab_profile
                     </span>
                     Relatórios
                 </a>
     
-                <a href="{{route('logout')}}" class="tw-duration-200 tw-ease-in tw-text-md tw-text-gray-800 tw-font-semibold tw-rounded-sm tw-px-2 tw-py-4 tw-w-full hover:tw-bg-blue-700 hover:tw-text-white tw-flex tw-items-center">
+                <a href="{{route('logout')}}" class="tw-duration-200 tw-ease-in tw-text-md tw-text-gray-800 tw-font-semibold tw-rounded-b-md tw-px-2 tw-py-4 tw-w-full hover:tw-bg-blue-700 hover:tw-text-white tw-flex tw-items-center">
                     <span class="material-symbols-outlined tw-mr-2">
                         logout
                     </span>
@@ -117,45 +119,5 @@
     <div>
         @yield('content')
     </div>
-
-    <script>
-        let menuOpen = false
-
-        function abrirMenu() {
-
-            let barra1 = document.getElementById('barra-1')
-            let barra2 = document.getElementById('barra-2')
-            let barra3 = document.getElementById('barra-3')
-            
-            let menu = document.getElementById('menu-mobile')
-
-            if(menuOpen) {
-                menu.classList.remove('tw-flex')
-                menu.classList.add('tw-hidden')
-
-                barra1.classList.remove('tw-rotate-45')
-                barra1.classList.remove('tw-translate-y-[3.75px]')
-                
-                barra2.classList.remove('tw-hidden')
-
-                barra3.classList.remove('tw--rotate-45')
-                barra3.classList.remove('tw-translate-y-[-3.75px]')
-
-            } else {
-                menu.classList.remove('tw-hidden')
-                menu.classList.add('tw-flex')
-
-                barra1.classList.add('tw-rotate-45')
-                barra1.classList.add('tw-translate-y-[3.75px]')
-                
-                barra2.classList.add('tw-hidden')
-
-                barra3.classList.add('tw--rotate-45')
-                barra3.classList.add('tw-translate-y-[-3.75px]')
-
-            }
-            menuOpen = !menuOpen
-        }
-    </script>
 </body>
 </html>
