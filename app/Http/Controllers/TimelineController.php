@@ -33,7 +33,7 @@ class TimelineController extends Controller
         ]);
     }
 
-    public function processAditionTimeline() {
-        
+    public function storeTimeline(Request $request) {
+        return $request;
     }
 }
