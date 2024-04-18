@@ -54,7 +54,7 @@ Route::group(['middleware' => 'auth'], function() {
             Route::get('/', [TimelineController::class, 'index'])->name('index');
 
             Route::get('/add', [TimelineController::class, 'addTimeline'])->name('add');
-            Route::post('/processAdition', [TimelineController::class, 'processAditionTimeline'])->name('processAdition');
+            Route::post('/store', [TimelineController::class, 'storeTimeline'])->name('store');
 
         });
 
