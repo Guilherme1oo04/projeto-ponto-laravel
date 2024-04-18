@@ -18,23 +18,24 @@
 
             <hr class="tw-mb-5">
 
-            <form action="{{route('admin.timelines.processAdition')}}" method="POST">
+            <form action="{{route('admin.timelines.store')}}" method="POST" id="form-timeline">
+                @csrf
             
                 <div class="tw-flex tw-flex-col tw-px-7 tw-mb-4">
                     <label for="name" class="tw-text-gray-900 tw-mb-1">Nome</label>
-                    <input type="text" name="name" id="name" class="tw-border tw-rounded-md tw-px-3 tw-py-2 tw-text-gray-900 tw-outline-none focus:tw-border-2 focus:tw-border-blue-700">
+                    <input type="text" name="name" id="name" required class="tw-border tw-rounded-md tw-px-3 tw-py-2 tw-text-gray-900 tw-outline-none focus:tw-border-2 focus:tw-border-blue-700">
                 </div>
 
                 <div class="tw-flex tw-flex-col tw-px-7 tw-mb-4">
                     <label for="description" class="tw-text-gray-900 tw-mb-1">
                         Descrição
                     </label>
-                    <textarea name="description" id="description" style="resize: none" class="tw-border tw-h-28 tw-text-sm tw-rounded-md tw-px-3 tw-py-2 tw-text-gray-900 tw-outline-none focus:tw-border-2 focus:tw-border-blue-700"></textarea>
+                    <textarea name="description" id="description" required style="resize: none" class="tw-border tw-h-28 tw-text-sm tw-rounded-md tw-px-3 tw-py-2 tw-text-gray-900 tw-outline-none focus:tw-border-2 focus:tw-border-blue-700"></textarea>
                 </div>
 
                 <div class="tw-flex tw-flex-col tw-items-center tw-justify-center tw-mb-5">
                     <p class="tw-text-gray-500 tw-text-center tw-mt-3 tw-max-w-96 tw-mx-auto tw-mb-2">
-                        Selecione os dias da semana que os funcionários não precisam trabalhar
+                        Selecione os dias da semana que os funcionários não devem ir trabalhar
                     </p>
                     <div class="tw-flex tw-flex-wrap tw-gap-3 tw-mt-2 tw-items-center tw-justify-center">
                         <div class="tw-flex tw-items-center tw-justify-center tw-gap-x-1">
@@ -94,7 +95,7 @@
                         </p>
                     </div>
 
-                    <input type="button" value="Adicionar dia" class="tw-text-md tw-max-w-32 tw-text-white tw-bg-blue-500 tw-shadow-md tw-cursor-pointer tw-font-semibold tw-rounded-md tw-mb-5 tw-px-2 tw-py-2 hover:tw-bg-blue-600" onclick="addDay()">
+                    <input type="button" value="Adicionar dia" class="tw-text-md tw-max-w-32 tw-text-white tw-bg-blue-500 tw-shadow-md tw-cursor-pointer tw-font-semibold tw-rounded-md tw-mb-5 tw-px-2 tw-py-2 hover:tw-bg-blue-600" onclick="addDay({{end($dias)}})">
 
                     <div id="exception-no-work-days" class="tw-w-full tw-px-7">
                         <hr class="tw-mb-4">
@@ -119,7 +120,7 @@
 
                     </div>
 
-                    <input type="button" value="Remover dia" class="tw-text-md tw-max-w-32 tw-text-white tw-bg-red-500 tw-shadow-md tw-cursor-pointer tw-font-semibold tw-rounded-md tw-mb-3 tw-mt-6 tw-px-2 tw-py-2 hover:tw-bg-red-600" onclick="removeDay()">
+                    <input type="button" value="Remover dia" class="tw-text-md tw-max-w-32 tw-text-white tw-bg-red-500 tw-shadow-md tw-cursor-pointer tw-font-semibold tw-rounded-md tw-mb-3 tw-mt-6 tw-px-2 tw-py-2 hover:tw-bg-red-700" onclick="removeDay()">
                     <p class="tw-text-gray-500 tw-text-center tw-text-sm tw-mx-auto">
                         Os dias repetidos são ignorados e somente o primeiro é válido
                     </p>
@@ -128,6 +129,7 @@
                     </p>
                 </div>
 
+                <input type="submit" value="Salvar timeline" class="tw-mt-6 tw-mb-3 tw-mx-auto tw-block tw-bg-blue-700 tw-text-white hover:tw-bg-blue-800 tw-px-3 tw-py-2 tw-rounded-3xl tw-cursor-pointer tw-shadow-md">
             </form>
         </div>
 
