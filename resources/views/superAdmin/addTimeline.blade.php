@@ -33,6 +33,11 @@
                     <textarea name="description" id="description" required style="resize: none" class="tw-border tw-h-28 tw-text-sm tw-rounded-md tw-px-3 tw-py-2 tw-text-gray-900 tw-outline-none focus:tw-border-2 focus:tw-border-blue-700"></textarea>
                 </div>
 
+                <div class="tw-flex tw-flex-col tw-px-7 tw-mb-4">
+                    <label for="weekHours" class="tw-text-gray-900 tw-mb-1">Horas semanais</label>
+                    <input type="number" inputmode="numeric" min="1" max="44" oninput="hoursFormatter('weekHours')" name="weekHours" id="weekHours" required class="tw-border tw-rounded-md tw-px-3 tw-py-2 tw-text-gray-900 tw-outline-none focus:tw-border-2 focus:tw-border-blue-700">
+                </div>
+
                 <div class="tw-flex tw-flex-col tw-items-center tw-justify-center tw-mb-5">
                     <p class="tw-text-gray-500 tw-text-center tw-mt-3 tw-max-w-96 tw-mx-auto tw-mb-2">
                         Selecione os dias da semana que os funcionários não devem ir trabalhar
@@ -40,43 +45,43 @@
                     <div class="tw-flex tw-flex-wrap tw-gap-3 tw-mt-2 tw-items-center tw-justify-center">
                         <div class="tw-flex tw-items-center tw-justify-center tw-gap-x-1">
                             <input type="checkbox" class="tw-w-4 tw-h-4" name="weekDaysNonWork[]" id="sunday" value="sunday">
-                            <label for="sunday" class="tw-text-gray-900">
+                            <label for="sunday" class="tw-text-gray-900 tw-select-none">
                                 Domingo
                             </label>
                         </div>
                         <div class="tw-flex tw-items-center tw-justify-center tw-gap-x-1">
                             <input type="checkbox" class="tw-w-4 tw-h-4" name="weekDaysNonWork[]" id="monday" value="monday">
-                            <label for="monday" class="tw-text-gray-900">
+                            <label for="monday" class="tw-text-gray-900 tw-select-none">
                                 Segunda-feira
                             </label>
                         </div>
                         <div class="tw-flex tw-items-center tw-justify-center tw-gap-x-1">
                             <input type="checkbox" class="tw-w-4 tw-h-4" name="weekDaysNonWork[]" id="tuesday" value="tuesday">
-                            <label for="tuesday" class="tw-text-gray-900">
+                            <label for="tuesday" class="tw-text-gray-900 tw-select-none">
                                 Terça-feira
                             </label>
                         </div>
                         <div class="tw-flex tw-items-center tw-justify-center tw-gap-x-1">
                             <input type="checkbox" class="tw-w-4 tw-h-4" name="weekDaysNonWork[]" id="wednesday" value="wednesday">
-                            <label for="wednesday" class="tw-text-gray-900">
+                            <label for="wednesday" class="tw-text-gray-900 tw-select-none">
                                 Quarta-feira
                             </label>
                         </div>
                         <div class="tw-flex tw-items-center tw-justify-center tw-gap-x-1">
                             <input type="checkbox" class="tw-w-4 tw-h-4" name="weekDaysNonWork[]" id="thursday" value="thursday">
-                            <label for="thursday" class="tw-text-gray-900">
+                            <label for="thursday" class="tw-text-gray-900 tw-select-none">
                                 Quinta-feira
                             </label>
                         </div>
                         <div class="tw-flex tw-items-center tw-justify-center tw-gap-x-1">
                             <input type="checkbox" class="tw-w-4 tw-h-4" name="weekDaysNonWork[]" id="friday" value="friday">
-                            <label for="friday" class="tw-text-gray-900">
+                            <label for="friday" class="tw-text-gray-900 tw-select-none">
                                 Sexta-feira
                             </label>
                         </div>
                         <div class="tw-flex tw-items-center tw-justify-center tw-gap-x-1">
                             <input type="checkbox" class="tw-w-4 tw-h-4" name="weekDaysNonWork[]" id="saturday" value="saturday">
-                            <label for="saturday" class="tw-text-gray-900">
+                            <label for="saturday" class="tw-text-gray-900 tw-select-none">
                                 Sábado
                             </label>
                         </div>
