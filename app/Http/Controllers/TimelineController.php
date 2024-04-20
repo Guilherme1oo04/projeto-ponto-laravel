@@ -13,7 +13,7 @@ class TimelineController extends Controller
 {
     public function index() {
 
-        return view('superAdmin.timelines');
+        return view('superAdmin.timeline.timelines');
     }
 
     public function addTimeline() {
@@ -31,7 +31,7 @@ class TimelineController extends Controller
             }
         }
 
-        return view('superAdmin.addTimeline', [
+        return view('superAdmin.timeline.addTimeline', [
             'dias' => $diasDoMes
         ]);
     }
