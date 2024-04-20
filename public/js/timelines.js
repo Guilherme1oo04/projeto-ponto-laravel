@@ -58,6 +58,20 @@ function removeDay() {
     }
 }
 
+function hoursFormatter(id) {
+    let input = document.getElementById(id)
+
+    input.value = input.value.replace(/[^0-9]/g, '').slice(0, 2)
+
+    if(parseInt(input.value) < 1) {
+        input.value = 1
+    }
+
+    if(parseInt(input.value) > 44) {
+        input.value = 44
+    }
+}
+
 document.getElementById('form-timeline').addEventListener('submit', (event) => {
     let weekDaysNonWorkChecked = document.querySelectorAll('input[name="weekDaysNonWork[]"]:checked')
     let exceptionsDaysCreated = document.querySelectorAll('select[name="exception-day-select-n"]')
