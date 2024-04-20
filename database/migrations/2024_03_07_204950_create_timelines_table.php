@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name')->unique();
             $table->string('description');
             $table->string('standard_non_work_days');
+            $table->integer('minimum_week_hours');
             $table->timestamps();
         });
     }

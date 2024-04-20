@@ -13,6 +13,7 @@ class Timeline extends Model
         'id',
         'name',
         'description',
-        'non_work_days'
+        'standard_non_work_days',
+        'minimum_week_hours'
     ];
 }
