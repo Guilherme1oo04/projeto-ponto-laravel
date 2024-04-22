@@ -13,7 +13,43 @@ class TimelineController extends Controller
 {
     public function index() {
 
-        return view('superAdmin.timeline.timelines');
+        $timelines = Timeline::all();
+
+        $daysRatio = [
+            [
+                'acronymPT' => "D",
+                'day' => 'sunday'
+            ],
+            [
+                'acronymPT' => "S",
+                'day' => 'monday'
+            ],
+            [
+                'acronymPT' => "T",
+                'day' => 'tuesday'
+            ],
+            [
+                'acronymPT' => "Q",
+                'day' => 'wednesday'
+            ],
+            [
+                'acronymPT' => "Q",
+                'day' => 'thursday'
+            ],
+            [
+                'acronymPT' => "S",
+                'day' => 'friday'
+            ],
+            [
+                'acronymPT' => "S",
+                'day' => 'saturday'
+            ],
+        ];
+
+        return view('superAdmin.timeline.timelines', [
+            'timelines' => $timelines,
+            'daysRatio' => $daysRatio,
+        ]);
     }
 
     public function addTimeline() {
