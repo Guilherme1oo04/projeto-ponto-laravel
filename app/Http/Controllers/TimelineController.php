@@ -52,6 +52,63 @@ class TimelineController extends Controller
         ]);
     }
 
+    public function viewTimeline(string $id) {
+        $timeline = Timeline::find($id);
+        if ($timeline) {
+
+            $exceptionsDays = NonWorkDaysExceptions::where('timeline_name', $timeline->name)->get();
+            
+            $weekDaysNonWork = explode(',', $timeline->standard_non_work_days);
+
+            $firstDay = date('Y-m-01');
+            $qntDiasMes = Date::create($firstDay)->daysInMonth;
+            $diasDoMes = [];
+            
+            for ($dia = 1; $dia <= $qntDiasMes; $dia++) {
+                if($dia < 10) {
+                    $formatDay = "0$dia";
+                } else {
+                    $formatDay = "$dia";
+                }
+
+                $weekDayPtBr = Date::create(date("Y-m-$formatDay"))->locale('pt_BR')->dayName;
+                $weekDayEn = Date::create(date("Y-m-$formatDay"))->dayName;
+
+                $nonWork = false;
+                if (in_array(strtolower($weekDayEn), $weekDaysNonWork)) {
+                    $nonWork = true;
+                }
+
+                $arrayDay = [
+                    'day' => "$formatDay",
+                    'weekDayPtBr' => $weekDayPtBr,
+                    'nonWork' => $nonWork,
+                ];
+
+                $exceptionDayFiltered = array_filter($exceptionsDays->toArray(), function ($array) use ($formatDay) {
+                    return $array['day'] === $formatDay;
+                });
+
+                if ($exceptionDayFiltered) {
+                    $arrayDay['nonWork'] = true;
+                    $arrayDay += ['reason' => $exceptionDayFiltered[0]['reason']];
+                }
+
+                $diasDoMes[] = $arrayDay;
+            }
+
+
+            return view('superAdmin.timeline.viewTimeline', [
+                'timeline' => $timeline,
+                'exceptionDays' => $exceptionsDays,
+                'diasDoMes' => $diasDoMes
+            ]);
+
+        } else {
+            return redirect()->back();
+        }
+    }
+
     public function addTimeline() {
         $dataAtual = date('Y-m-d');
         $qntDiasMes = Date::create($dataAtual)->daysInMonth;
@@ -91,10 +148,14 @@ class TimelineController extends Controller
                 $keyReason = "exception-day-textarea-n$numInput";
                 $reason = $request->$keyReason;
 
-                $exceptionsDaysNonWork[] = array(
+                $arrayDay = array(
                     'day' => $day,
                     'reason' => $reason
                 );
+
+                if (!in_array($arrayDay, $exceptionsDaysNonWork)) {
+                    $exceptionsDaysNonWork[] = $arrayDay;
+                }
             }
         }
 
