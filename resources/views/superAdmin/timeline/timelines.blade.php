@@ -52,19 +52,19 @@
             @foreach ($timelines as $timeline)
                 <div class="tw-bg-white tw-px-4 tw-py-6 tw-rounded-md tw-border tw-shadow-md">
                     <div class="tw-mb-2">
-                        <h1 class="tw-text-3xl tw-font-bold tw-text-gray-900">
+                        <h1 class="tw-text-2xl sm:tw-text-3xl tw-font-bold tw-text-gray-900">
                             {{$timeline->name}}
                         </h1>
                     </div>
 
                     <div class="tw-mb-2">
-                        <p class="tw-text-gray-600 tw-font-semibold tw-text-xl">
+                        <p class="tw-text-gray-600 tw-font-semibold tw-text-lg sm:tw-text-xl">
                             {{$timeline->description}}
                         </p>
                     </div>
 
                     <div class="tw-mb-2">
-                        <p class="tw-text-gray-600 tw-font-semibold tw-text-xl">
+                        <p class="tw-text-gray-600 tw-font-semibold tw-text-lg sm:tw-text-xl">
                             Horas semanais: 
                             <span class="tw-text-gray-900">
                                 {{$timeline->minimum_week_hours}}
@@ -73,18 +73,18 @@
                     </div>
 
                     <div>
-                        <div class="tw-flex tw-items-center tw-gap-2 tw-text-xl tw-text-gray-600 tw-font-semibold">
+                        <div class="tw-text-lg sm:tw-text-xl tw-text-gray-600 tw-font-semibold">
                             Dias da semana sem trabalho:
-                            <div class="tw-w-4 tw-h-4 tw-bg-blue-700 tw-rounded-[50%] tw-mt-1"></div>
+                            <div class="tw-inline-block tw-w-4 tw-h-4 tw-bg-blue-700 tw-rounded-[50%] tw-align-middle"></div>
                         </div>
-                        <div class="tw-flex tw-justify-center tw-text-xl tw-font-semibold tw-mt-3">
+                        <div class="tw-flex tw-justify-center tw-text-sm sm:tw-text-xl tw-font-semibold tw-mt-3 tw-select-none">
                             @foreach ($daysRatio as $dayRatio)
                                 @if (strpos($timeline->standard_non_work_days, $dayRatio['day']) === false)
-                                    <div class="tw-bg-white tw-text-gray-900 tw-py-1 tw-px-3 tw-border tw-border-gray-700">
+                                    <div class="tw-bg-white tw-text-gray-900 tw-py-1 tw-px-2 sm:tw-px-3 tw-border tw-border-gray-700">
                                         {{$dayRatio['acronymPT']}}
                                     </div>
                                 @else
-                                <div class="tw-bg-blue-700 tw-text-white tw-py-1 tw-px-3 tw-border tw-border-gray-700">
+                                <div class="tw-bg-blue-700 tw-text-white tw-py-1 tw-px-2 sm:tw-px-3 tw-border tw-border-gray-700">
                                     {{$dayRatio['acronymPT']}}
                                 </div>
                                 @endif
@@ -93,19 +93,19 @@
                     </div>
 
                     <div class="tw-flex tw-justify-center tw-gap-4 tw-mt-10">
-                        <a href="#">
-                            <svg data-slot="icon" class="tw-w-9 tw-bg-blue-700 tw-text-white tw-p-1 tw-rounded-md" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <a href="{{route('admin.timelines.view', ['id' => $timeline->id])}}">
+                            <svg data-slot="icon" class="tw-w-9 tw-bg-blue-700 tw-text-white tw-p-1 tw-rounded-md hover:tw-bg-blue-800" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z"></path>
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"></path>
                             </svg>
                         </a>
                         <a href="#">
-                            <svg data-slot="icon" class="tw-w-9 tw-bg-gray-600 tw-text-white tw-p-1 tw-rounded-md" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <svg data-slot="icon" class="tw-w-9 tw-bg-gray-600 tw-text-white tw-p-1 tw-rounded-md hover:tw-bg-gray-700" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10"></path>
                             </svg>
                         </a>
                         <a href="#">
-                            <svg data-slot="icon" class="tw-w-9 tw-bg-red-500 tw-text-white tw-p-1 tw-rounded-md" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                            <svg data-slot="icon" class="tw-w-9 tw-bg-red-500 tw-text-white tw-p-1 tw-rounded-md hover:tw-bg-red-700" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="m20.25 7.5-.625 10.632a2.25 2.25 0 0 1-2.247 2.118H6.622a2.25 2.25 0 0 1-2.247-2.118L3.75 7.5m6 4.125 2.25 2.25m0 0 2.25 2.25M12 13.875l2.25-2.25M12 13.875l-2.25 2.25M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z"></path>
                             </svg>
                         </a>
