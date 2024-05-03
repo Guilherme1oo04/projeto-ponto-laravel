@@ -52,7 +52,7 @@ class TimelineController extends Controller
         ]);
     }
 
-    public function viewTimeline(string $id) {
+    public function view(string $id) {
         $timeline = Timeline::find($id);
         if ($timeline) {
 
@@ -63,6 +63,7 @@ class TimelineController extends Controller
             $firstDay = date('Y-m-01');
             $qntDiasMes = Date::create($firstDay)->daysInMonth;
             $diasDoMes = [];
+            $week = [];
             
             for ($dia = 1; $dia <= $qntDiasMes; $dia++) {
                 if($dia < 10) {
@@ -72,6 +73,7 @@ class TimelineController extends Controller
                 }
 
                 $weekDayPtBr = Date::create(date("Y-m-$formatDay"))->locale('pt_BR')->dayName;
+                $weekDayIndex = Date::create(date("Y-m-$formatDay"))->locale('pt_BR')->weekday();
                 $weekDayEn = Date::create(date("Y-m-$formatDay"))->dayName;
 
                 $nonWork = false;
@@ -82,6 +84,7 @@ class TimelineController extends Controller
                 $arrayDay = [
                     'day' => "$formatDay",
                     'weekDayPtBr' => $weekDayPtBr,
+                    'weekDayIndex' => $weekDayIndex,
                     'nonWork' => $nonWork,
                 ];
 
@@ -91,10 +94,31 @@ class TimelineController extends Controller
 
                 if ($exceptionDayFiltered) {
                     $arrayDay['nonWork'] = true;
-                    $arrayDay += ['reason' => $exceptionDayFiltered[0]['reason']];
+                    $arrayDay += ['reason' => $exceptionDayFiltered[array_key_first($exceptionDayFiltered)]['reason']];
                 }
 
-                $diasDoMes[] = $arrayDay;
+                $qntRemoverArray = 0;
+                if ($dia == 1 && $weekDayIndex != 0) {
+                    while ($qntRemoverArray < $weekDayIndex) {
+                        $week[] = "";
+                        $qntRemoverArray++;
+                    }
+                }
+
+                $week[] = $arrayDay;
+
+                if (count($week) == 7) {
+                    $diasDoMes[] = $week;
+                    $week = [];
+                }
+
+                if ($dia == $qntDiasMes) {
+                    while(count($week) != 7) {
+                        $week[] = "";
+                    }
+                    $diasDoMes[] = $week;
+                    $week = [];
+                }
             }
 
 
@@ -109,7 +133,7 @@ class TimelineController extends Controller
         }
     }
 
-    public function addTimeline() {
+    public function add() {
         $dataAtual = date('Y-m-d');
         $qntDiasMes = Date::create($dataAtual)->daysInMonth;
 
@@ -129,7 +153,7 @@ class TimelineController extends Controller
         ]);
     }
 
-    public function storeTimeline(Request $request) {
+    public function store(Request $request) {
 
         $name = $request->name;
         $description = $request->description;
@@ -153,7 +177,11 @@ class TimelineController extends Controller
                     'reason' => $reason
                 );
 
-                if (!in_array($arrayDay, $exceptionsDaysNonWork)) {
+                $exceptionDayFound = array_filter($exceptionsDaysNonWork, function($array) use ($arrayDay) {
+                    return $array['day'] == $arrayDay['day'];
+                });
+
+                if (empty($exceptionDayFound)) {
                     $exceptionsDaysNonWork[] = $arrayDay;
                 }
             }
@@ -184,5 +212,31 @@ class TimelineController extends Controller
             DB::rollBack();
             return redirect()->route('admin.timelines.index')->with('message', "Erro na criação: " . $e->getMessage())->with('status', 'error');
         }
+    }
+
+    public function delete(string $id) {
+        $timeline = Timeline::find($id);
+
+        if(!$timeline) {
+            return redirect()->route('admin.timelines.index')->with('message', 'Essa timeline não existe')->with('status', 'error');
+        }
+
+        try {
+            DB::transaction(function() use ($timeline) {
+                $exceptionsDays = NonWorkDaysExceptions::where('timeline_name', $timeline->name)->get();
+
+                foreach($exceptionsDays as $exceptionDay) {
+                    NonWorkDaysExceptions::destroy($exceptionDay->id);
+                }
+
+                Timeline::destroy($timeline->id);
+            });
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->route('admin.timelines.index')->with('message', 'Erro ao excluir')->with('status', 'error');
+        }
+
+        return redirect()->route('admin.timelines.index')->with('message', 'Timeline deletada com sucesso!')->with('status', 'sucess');
     }
 }
