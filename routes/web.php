@@ -53,10 +53,12 @@ Route::group(['middleware' => 'auth'], function() {
 
             Route::get('/', [TimelineController::class, 'index'])->name('index');
 
-            Route::get('/view/{id}', [TimelineController::class, 'viewTimeline'])->name('view');
+            Route::get('/view/{id}', [TimelineController::class, 'view'])->name('view');
 
-            Route::get('/add', [TimelineController::class, 'addTimeline'])->name('add');
-            Route::post('/store', [TimelineController::class, 'storeTimeline'])->name('store');
+            Route::get('/add', [TimelineController::class, 'add'])->name('add');
+            Route::post('/store', [TimelineController::class, 'store'])->name('store');
+
+            Route::get('/delete/{id}', [TimelineController::class, 'delete'])->name('delete');
 
         });
 
