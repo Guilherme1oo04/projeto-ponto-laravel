@@ -52,19 +52,19 @@
             @foreach ($timelines as $timeline)
                 <div class="tw-bg-white tw-px-4 tw-py-6 tw-rounded-md tw-border tw-shadow-md">
                     <div class="tw-mb-2">
-                        <h1 class="tw-text-2xl sm:tw-text-3xl tw-font-bold tw-text-gray-900">
+                        <h1 class="tw-text-2xl sm:tw-text-3xl tw-font-bold tw-text-gray-900 tw-max-w-72">
                             {{$timeline->name}}
                         </h1>
                     </div>
 
                     <div class="tw-mb-2">
-                        <p class="tw-text-gray-600 tw-font-semibold tw-text-lg sm:tw-text-xl">
+                        <p class="tw-text-gray-600 tw-font-semibold tw-text-md sm:tw-text-lg tw-max-w-72">
                             {{$timeline->description}}
                         </p>
                     </div>
 
                     <div class="tw-mb-2">
-                        <p class="tw-text-gray-600 tw-font-semibold tw-text-lg sm:tw-text-xl">
+                        <p class="tw-text-gray-600 tw-font-semibold tw-text-md sm:tw-text-lg">
                             Horas semanais: 
                             <span class="tw-text-gray-900">
                                 {{$timeline->minimum_week_hours}}
@@ -73,7 +73,7 @@
                     </div>
 
                     <div>
-                        <div class="tw-text-lg sm:tw-text-xl tw-text-gray-600 tw-font-semibold">
+                        <div class="tw-text-md sm:tw-text-lg tw-text-gray-600 tw-font-semibold">
                             Dias da semana sem trabalho:
                             <div class="tw-inline-block tw-w-4 tw-h-4 tw-bg-blue-700 tw-rounded-[50%] tw-align-middle"></div>
                         </div>
