@@ -124,7 +124,6 @@ class TimelineController extends Controller
 
             return view('superAdmin.timeline.viewTimeline', [
                 'timeline' => $timeline,
-                'exceptionDays' => $exceptionsDays,
                 'diasDoMes' => $diasDoMes
             ]);
 
