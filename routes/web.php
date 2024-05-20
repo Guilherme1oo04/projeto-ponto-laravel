@@ -60,6 +60,9 @@ Route::group(['middleware' => 'auth'], function() {
 
             Route::get('/delete/{id}', [TimelineController::class, 'delete'])->name('delete');
 
+            Route::get('/edit/{id}', [TimelineController::class, 'edit'])->name('edit');
+            Route::post('/update{id}', [TimelineController::class, 'update'])->name('update');
+
         });
 
     });
