@@ -7,7 +7,12 @@
     <div class="tw-flex tw-items-center tw-justify-center">
         
         <div class="tw-mx-2 tw-mt-12 tw-py-4 tw-px-3 tw-bg-white tw-border tw-rounded-2xl tw-shadow-sm tw-max-w-[450px] tw-mb-10">
-            <div class="tw-py-5">
+            <a href="{{route('admin.timelines.index')}}">
+                <svg data-slot="icon" class="tw-w-8 tw-bg-blue-700 tw-text-white tw-p-1 tw-rounded-md hover:tw-bg-blue-800" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 15 3 9m0 0 6-6M3 9h12a6 6 0 0 1 0 12h-3"></path>
+                </svg>
+            </a>
+            <div class="tw-pb-5">
                 <h1 class="tw-text-gray-800 tw-font-bold tw-text-2xl tw-block tw-text-center">
                     Adicionar timeline
                 </h1>
