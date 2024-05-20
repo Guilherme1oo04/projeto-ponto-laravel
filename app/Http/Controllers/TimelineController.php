@@ -213,6 +213,85 @@ class TimelineController extends Controller
         }
     }
 
+    public function edit(string $id) {
+        $timeline = Timeline::find($id);
+
+        if ($timeline) {
+            $exceptionsDays = NonWorkDaysExceptions::where('timeline_name', $timeline->name)->get();
+
+            $dataAtual = date('Y-m-d');
+            $qntDiasMes = Date::create($dataAtual)->daysInMonth;
+            $diasDoMes = [];
+            for ($dia = 1; $dia <= $qntDiasMes; $dia++) {
+                if($dia < 10) {
+                    $diasDoMes[] = "0$dia";
+                } else {
+                    $diasDoMes[] = "$dia";
+                }
+            }
+
+            return view('superAdmin.timeline.editTimeline', [
+                'dias' => $diasDoMes,
+                'timeline' => $timeline,
+                'exceptionsDays' => $exceptionsDays
+            ]);
+        }
+
+        return redirect()->route('admin.timelines.index')->with('message', "Timeline inexistente")->with('status', 'error');
+    }
+
+    public function update(Request $request, String $id) {
+        $name = $request->name;
+        $description = $request->description;
+        $weekHours = intval($request->weekHours);
+        $weekDaysNonWork = "";
+        $exceptionsDaysNonWork = [];
+
+        foreach ($request->weekDaysNonWork as $day) {
+            $weekDaysNonWork .= "$day,";
+        }
+
+        foreach ($request->all() as $key => $exception) {
+            if(str_starts_with($key, "exception-day-select-n")) {
+                $day = $exception;
+                $numInput = str_replace("exception-day-select-n", "", $key);
+                $keyReason = "exception-day-textarea-n$numInput";
+                $reason = $request->$keyReason;
+
+                $arrayDay = array(
+                    'day' => $day,
+                    'reason' => $reason
+                );
+                $exceptionsDaysNonWork[] = $arrayDay;
+            }
+        }
+
+        try {
+            DB::transaction(function() use ($id, $name, $description, $weekHours, $weekDaysNonWork, $exceptionsDaysNonWork) {
+                Timeline::where('id', $id)
+                    ->update([
+                        'name' => $name,
+                        'description' => $description,
+                        'minimum_week_hours' => $weekHours,
+                        'standard_non_work_days' => $weekDaysNonWork
+                    ]);
+
+                foreach ($exceptionsDaysNonWork as $exception) {
+                    NonWorkDaysExceptions::updateOrCreate(
+                        ['timeline_name' => $name, 'day' => $exception['day']], 
+                        ['reason' => $exception['reason']]
+                    );
+                }
+            });
+            return redirect()->route('admin.timelines.index')->with('message', 'Timeline atualizada com sucesso!')->with('status', 'sucess');
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return redirect()->route('admin.timelines.index')->with('message', "Erro na atualização")->with('status', 'error');
+        }
+
+    }
+
     public function delete(string $id) {
         $timeline = Timeline::find($id);
 
