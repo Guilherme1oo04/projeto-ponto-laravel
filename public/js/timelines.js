@@ -29,7 +29,7 @@ function addDay(numDias) {
 
         let exampleSpanTextarea = document.getElementById('exception-day-span-textarea-example')
         let cloneSpanTextarea = exampleSpanTextarea.cloneNode()
-        cloneSpanTextarea.setAttribute('id', `exception-day-span-textarea-${qntChildren - 1}`)
+        cloneSpanTextarea.setAttribute('id', `exception-day-span-textarea-n${qntChildren - 1}`)
 
         let exampleTextarea = document.getElementById('exception-day-textarea-example')
         let cloneTextarea = exampleTextarea.cloneNode()
@@ -42,19 +42,54 @@ function addDay(numDias) {
         cloneTextareaBox.appendChild(cloneSpanTextarea)
 
         cloneField.appendChild(cloneTextareaBox)
+
+        let exampleRemoveButton = document.getElementById('exception-day-remove-button-example')
+        let cloneRemoveButton = exampleRemoveButton.cloneNode(true)
+        cloneRemoveButton.setAttribute('id', `exception-day-remove-button-n${qntChildren - 1}`)
+        cloneRemoveButton.setAttribute('onclick', `removeDay(${qntChildren - 1})`)
+
+        cloneField.appendChild(cloneRemoveButton)
         
         exceptionsDiv.appendChild(cloneField)
     }
 }
 
-function removeDay() {
+function removeDay(numDiv) {
     let exceptionsDiv = document.getElementById('exception-no-work-days')
     let qntChildren = exceptionsDiv.children.length
 
     if (qntChildren > 2) {
-        let lastDay = exceptionsDiv.lastChild
+        let divToRemove = document.getElementById(`exception-day-field-n${numDiv}`)
 
-        exceptionsDiv.removeChild(lastDay)
+        divToRemove.parentNode.removeChild(divToRemove)
+
+        let exceptionDayFields = document.querySelectorAll('div[id^="exception-day-field-n"]')
+        let exceptionDaySelects = document.querySelectorAll('select[id^="exception-day-select-n"]')
+        let exceptionDayTextareaBoxes = document.querySelectorAll('div[id^="exception-day-textarea-box-n"]')
+        let exceptionDayTextareaLabels = document.querySelectorAll('label[id^="exception-day-label-textarea-n"]')
+        let exceptionDayTextareaSpans = document.querySelectorAll('span[id^="exception-day-span-textarea-n"]')
+        let exceptionDayTextareas = document.querySelectorAll('textarea[id^="exception-day-textarea-n"]')
+        let exceptionDayRemoveButtons = document.querySelectorAll('button[id^="exception-day-remove-button-n"]')
+
+        for (let i = 0; i < qntChildren - 3; i++) {
+            exceptionDayFields[i].setAttribute('id', `exception-day-field-n${i + 1}`)
+
+            exceptionDaySelects[i].setAttribute('id', `exception-day-select-n${i + 1}`)
+            exceptionDaySelects[i].setAttribute('name', `exception-day-select-n${i + 1}`)
+
+            exceptionDayTextareaBoxes[i].setAttribute('id', `exception-day-textarea-box-n${i + 1}`)
+
+            exceptionDayTextareaLabels[i].setAttribute('id', `exception-day-label-textarea-n${i + 1}`)
+            exceptionDayTextareaLabels[i].setAttribute('for', `exception-day-textarea-n${i + 1}`)
+
+            exceptionDayTextareaSpans[i].setAttribute('id', `exception-day-span-textarea-n${i + 1}`)
+
+            exceptionDayTextareas[i].setAttribute('id', `exception-day-textarea-n${i + 1}`)
+            exceptionDayTextareas[i].setAttribute('name', `exception-day-textarea-n${i + 1}`)
+
+            exceptionDayRemoveButtons[i].setAttribute('id', `exception-day-remove-button-n${i + 1}`)
+            exceptionDayRemoveButtons[i].setAttribute('onclick', `removeDay(${i + 1})`)
+        }
     }
 }
 
