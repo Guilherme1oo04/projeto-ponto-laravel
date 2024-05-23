@@ -110,7 +110,7 @@
                     <div id="exception-no-work-days" class="tw-w-full tw-px-7">
                         <hr class="tw-mb-4">
 
-                        <div id="exception-day-field-example" class="tw-items-center tw-hidden tw-mb-2">
+                        <div id="exception-day-field-example" class="tw-items-start tw-hidden tw-mb-2">
 
                             <select id="exception-day-select-example" class="tw-w-20 tw-border tw-py-1 tw-rounded-md tw-shadow-sm">
                                 @foreach ($dias as $dia)
@@ -126,12 +126,16 @@
                                     <textarea id="exception-day-textarea-example" style="resize: none;" class="tw-absolute tw-duration-75 tw-ease-linear tw-border tw-h-20 tw-w-48 tw-text-sm tw-rounded-md tw-px-3 tw-py-2 tw-ml-2 tw-text-gray-900 tw-outline-none focus:tw-border-2 focus:tw-border-blue-700"></textarea>
                                 </span>
                             </div>
+
+                            <button type="button" id="exception-day-remove-button-example">
+                                <svg data-slot="icon" class="tw-w-6 tw-ml-2  tw-bg-red-500 tw-text-white tw-p-1 tw-rounded-md hover:tw-bg-red-700" fill="none" stroke-width="1.5" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m20.25 7.5-.625 10.632a2.25 2.25 0 0 1-2.247 2.118H6.622a2.25 2.25 0 0 1-2.247-2.118L3.75 7.5m6 4.125 2.25 2.25m0 0 2.25 2.25M12 13.875l2.25-2.25M12 13.875l-2.25 2.25M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z"></path>
+                                </svg>
+                            </button>
                         </div>
 
                     </div>
-
-                    <input type="button" value="Remover dia" class="tw-text-md tw-max-w-32 tw-text-white tw-bg-red-500 tw-shadow-md tw-cursor-pointer tw-font-semibold tw-rounded-md tw-mb-3 tw-mt-6 tw-px-2 tw-py-2 hover:tw-bg-red-700" onclick="removeDay()">
-                    <p class="tw-text-gray-500 tw-text-center tw-text-sm tw-mx-auto">
+                    <p class="tw-text-gray-500 tw-text-center tw-text-sm tw-mx-auto tw-mt-2">
                         Os dias repetidos são ignorados e somente o primeiro é válido
                     </p>
                     <p class="tw-text-gray-500 tw-text-center tw-text-sm tw-mx-auto">
