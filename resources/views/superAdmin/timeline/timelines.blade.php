@@ -35,9 +35,10 @@
 
     <div class="tw-w-screen tw-flex tw-justify-center tw-items-center tw-py-5">
         <a href="{{route('admin.timelines.add')}}" class="tw-font-semibold tw-text-lg tw-text-white tw-bg-blue-700 tw-py-2 tw-px-3 tw-rounded-3xl tw-flex tw-justify-center tw-items-center tw-shadow-md tw-duration-200 tw-ease-linear hover:tw-bg-blue-800 hover:tw-shadow-lg">
-            <span class="material-symbols-outlined tw-mr-1">
-                add
-            </span>
+            <svg data-slot="icon" class="tw-w-6 tw-mr-2" fill="none" stroke-width="2.6" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"></path>
+            </svg>
+
             Nova timeline
         </a>
     </div>
