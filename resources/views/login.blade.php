@@ -8,6 +8,36 @@
     @vite('resources/js/app.js')
 </head>
 <body class="tw-bg-gray-100">
+
+@if (session('message'))
+
+    <div class="tw-flex tw-justify-end tw-w-full tw-absolute" 
+    x-data="{show: false, closeButton: false}" 
+    x-init="setTimeout(() => show = true, 1500); setTimeout(() => show = false, 4000)" 
+    x-show="show"  
+    x-transition:enter="tw-transition tw-ease-out tw-duration-300"
+    x-transition:enter-start="tw-opacity-0 tw-scale-90"
+    x-transition:enter-end="tw-opacity-100 tw-scale-100"
+    x-transition:leave="tw-transition tw-ease-in tw-duration-300"
+    x-transition:leave-start="tw-opacity-100 tw-scale-100"
+    x-transition:leave-end="tw-opacity-0 tw-scale-90"
+    id="notification" >
+        <p class="tw-w-full tw-max-w-72 tw-mt-3 tw-mx-3 tw-top-0 tw-bg-white tw-py-3 tw-px-2 tw-flex tw-items-center tw-shadow-md" x-on:mouseover="closeButton = true" x-on:mouseout="closeButton = false">
+        
+            @if (session('status') == 'sucess')
+                <svg class="tw-w-[18px] tw-h-[18px] tw-mr-1 tw-text-green-500" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2ZM16.7744 9.63269C17.1238 9.20501 17.0604 8.57503 16.6327 8.22559C16.2051 7.87615 15.5751 7.93957 15.2256 8.36725L10.6321 13.9892L8.65936 12.2524C8.24484 11.8874 7.61295 11.9276 7.248 12.3421C6.88304 12.7566 6.92322 13.3885 7.33774 13.7535L9.31046 15.4903C10.1612 16.2393 11.4637 16.1324 12.1808 15.2547L16.7744 9.63269Z" fill="currentColor"></path></svg>
+            @else
+                <svg class="tw-w-[18px] tw-h-[18px] tw-mr-1 tw-text-red-500" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12ZM11.9996 7C12.5519 7 12.9996 7.44772 12.9996 8V12C12.9996 12.5523 12.5519 13 11.9996 13C11.4474 13 10.9996 12.5523 10.9996 12V8C10.9996 7.44772 11.4474 7 11.9996 7ZM12.001 14.99C11.4488 14.9892 11.0004 15.4363 10.9997 15.9886L10.9996 15.9986C10.9989 16.5509 11.446 16.9992 11.9982 17C12.5505 17.0008 12.9989 16.5537 12.9996 16.0014L12.9996 15.9914C13.0004 15.4391 12.5533 14.9908 12.001 14.99Z" fill="currentColor"></path></svg>
+            @endif
+
+            <strong>{{session('message')}}</strong>
+
+            <svg x-show="closeButton" @click="show = false" class="tw-w-[24px] tw-h-[24px] tw-cursor-pointer tw-ml-auto tw-rounded-[50%] tw-p-1 hover:tw-bg-gray-200 tw-text-gray-800 tw-duration-200" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+        </p>
+    </div>
+    
+@endif
+
     <h1 class="tw-text-center tw-py-2 tw-text-lg tw-flex tw-items-center tw-mx-auto tw-justify-center tw-font-semibold tw-text-gray-800 tw-cursor-default">
         <img src="../assets/icon-clock.svg" class="tw-w-10 tw-mr-2">
         Clock In Help
@@ -55,19 +85,6 @@
                 </a>
             </p>
 
-
-            @if (session('message'))
-                <p id="session-message" class="tw-text-center tw-mt-7 tw-mx-7 tw-py-3 tw-rounded-md tw-text-xl tw-bg-red-500 tw-text-white tw-font-semibold">{{ session('message') }}</p>
-
-                <script>
-                    const messageParagraph = document.getElementById('session-message');
-
-                    setTimeout(() => {
-                        messageParagraph.style.display = 'none';
-                    }, 4000);
-                </script>
-            @endif
-            
         </div>
 
     </div>
