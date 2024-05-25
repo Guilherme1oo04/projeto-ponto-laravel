@@ -7,11 +7,16 @@ use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
 {
-    public function addEmployee() {
-        return view('superAdmin.addEmployee');
+
+    public function index() {
+        return view('superAdmin.employee.employees');
     }
 
-    public function processAditionEmployee(Request $request) {
+    public function add() {
+        return view('superAdmin.employee.addEmployee');
+    }
+
+    public function store(Request $request) {
 
     }
 }
